@@ -5,7 +5,7 @@ class World():
         self.tile_map = []
         self.waypoints = []
         self.level_data = data
-        self.iamge = map_imgage
+        self.image = map_imgage
         
         
     def process_data(self):
