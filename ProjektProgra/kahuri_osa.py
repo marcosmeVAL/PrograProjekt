@@ -65,7 +65,7 @@ class Kahur(pygame.sprite.Sprite):
         self.upg_level += 1
         self.range = KDATA[self.upg_level - 1].get("range")
         self.cd = KDATA[self.upg_level - 1].get("cd")
-        #upgrade
+        #upgrade pildid
         self.animatioon_list = self.lae_pildid(self.sprite_sheets[self.upg_level - 1])
         self.image_og = self.animatioon_list[self.frame_indeks]
         
@@ -84,14 +84,15 @@ class Kahur(pygame.sprite.Sprite):
         y_dist = 0
         #vaata kaugust vastasest
         for v in vaenlane_grupp:
-            x_dist = v.positsioon[0] - self.x
-            y_dist = v.positsioon[1] - self.y
-            dist = math.sqrt(x_dist ** 2 + y_dist ** 2)
-            if dist < self.range:
-                self.sihtmärk = v
-                self.nurk = math.degrees(math.atan2(-y_dist, x_dist))
-                print("__")
-                
+            if v.elu > 0:
+                x_dist = v.positsioon[0] - self.x
+                y_dist = v.positsioon[1] - self.y
+                dist = math.sqrt(x_dist ** 2 + y_dist ** 2)
+                if dist < self.range:
+                    self.sihtmärk = v
+                    self.nurk = math.degrees(math.atan2(-y_dist, x_dist))
+                    self.sihtmärk.elu -= k.damg
+                    break 
                 
     def animatsioon(self):
         #update img

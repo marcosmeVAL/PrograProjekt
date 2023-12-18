@@ -7,7 +7,19 @@ kõrval_paneel = 300
 ekraani_laius = veerg * ruut
 ekraani_pikkus = rida * ruut
 FPS = 60
+#mangu
+Elud = 1
+Cash = 5000
+totallevels = 1
+#vaenlased
+spawni_cd = 400
+
 #kahur kindlad
+kahuri_ost = 200
+kahuri_upgrade = 100
+kill_rew = 15
+level_lõpp_rew = 100
+damg = 5
 kahur_levels = 4
 animatsioon_protsess = 8
 animatsioon_delay = 15

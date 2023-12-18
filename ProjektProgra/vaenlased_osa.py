@@ -1,10 +1,11 @@
 import pygame
 from pygame.math import Vector2
 import math
-
+from vaenlase_data import VaenData
+import mängu_kindlad_seaded as k
 
 class Vaenlane(pygame.sprite.Sprite):
-    def __init__(self, waypoints, image):
+    def __init__(self, vaenlase_tugevus, waypoints, images):
         
         pygame.sprite.Sprite.__init__(self)
         #
@@ -14,9 +15,11 @@ class Vaenlane(pygame.sprite.Sprite):
         #
         self.siht_waypoint = 1
         #
-        self.kiirus = 2
+        self.elu = VaenData.get(vaenlase_tugevus)["elu"]
         #
-        self.org_image = image
+        self.kiirus = VaenData.get(vaenlase_tugevus)["kiirus"]
+        #
+        self.org_image = images.get(vaenlase_tugevus)
         #
         self.nurk = 0
         #
@@ -26,9 +29,14 @@ class Vaenlane(pygame.sprite.Sprite):
         #
         self.rect.center = self.positsioon
         #
+    
+    def vaata_elusi(self, maailm):
+        if self.elu <= 0:
+            maailm.money += k.kill_rew
+            maailm.killedv += 1
+            self.kill()
         
-        
-    def liikumine(self):
+    def liikumine(self, maailm):
         #otsi uus siht kuhu liikuda
         if self.siht_waypoint < len(self.waypoints):
             self.siht = Vector2(self.waypoints[self.siht_waypoint])
@@ -36,6 +44,8 @@ class Vaenlane(pygame.sprite.Sprite):
         else:
             #rohkem waypointe pole
             self.kill()
+            maailm.elud -= 1
+            maailm.missedv += 1
             
         #arvuta kaugus sihist
         dist = self.liikuma.length()
@@ -50,10 +60,10 @@ class Vaenlane(pygame.sprite.Sprite):
         #self.rect.center = self.positsioon
         
         
-    def update(self):
-        self.liikumine()
+    def update(self, maailm):
+        self.liikumine(maailm)
         self.pööra()
-        
+        self.vaata_elusi(maailm)
         
     def pööra(self):
         #arvutab kauguse järgmise waypointini
