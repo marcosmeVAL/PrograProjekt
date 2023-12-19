@@ -46,11 +46,18 @@ for i in range(1, k.kahur_levels + 1):
 hiirekahur = pygame.image.load("pildid/cursor_turret.png").convert_alpha()
 
 #nupud mängu akna kõrval
-kahuri_ostmisnupp = pygame.image.load("pildid/nupkah.png").convert_alpha()
+kahuri_ostmisnupp = pygame.image.load("pildid/kahur.png").convert_alpha()
 cancel_pilt = pygame.image.load("pildid/cancel.png").convert_alpha()
 upg_kahur_pilt = pygame.image.load("pildid/upgrade_turret.png").convert_alpha()
 alga_level = pygame.image.load("pildid/begin.png").convert_alpha()
 restart = pygame.image.load("pildid/restart.png").convert_alpha()
+kiirenda = pygame.image.load("pildid/fast_forward.png").convert_alpha()
+
+sydamepilt = pygame.image.load("pildid/süda.png").convert_alpha()
+rahapilt = pygame.image.load("pildid/coinpic.png").convert_alpha()
+
+#
+
 #Gruppid
 
 vaenlane_grupp = pygame.sprite.Group()
@@ -71,13 +78,27 @@ teksti_suur_font = pygame.font.SysFont("Consolas", 36)
 def tekst(tekst, font, värv, x, y):
     img = font.render(tekst, True, värv)
     ekraan.blit(img, (x, y))
-
+def ekraan_data():
+    pygame.draw.rect(ekraan, "grey20", (k.ekraani_laius, 0, k.kõrval_paneel, k.ekraani_pikkus))
+    pygame.draw.rect(ekraan, "grey", (k.ekraani_laius, 0, k.kõrval_paneel, 400), 2)
+    #ekraan.blit(logopic, (k.ekraani_laius, 400))
+    #
+    ekraan.blit(sydamepilt, ( k.ekraani_laius + 10, 35))
+    tekst(str(maailm.elud), teksti_font, "black", k.ekraani_laius + 50, 40)
+    #
+    ekraan.blit(rahapilt, ( k.ekraani_laius + 10, 65))
+    tekst(str(maailm.money), teksti_font, "black", k.ekraani_laius + 50, 70)
+    #
+    tekst("Level: " + str(maailm.level), teksti_font, "black", 0, 10)
+    
+    
 #loo nupp
 kahuri_nupp = Nupp(k.ekraani_laius + 30, 120, kahuri_ostmisnupp, True)
 cancel_nupp = Nupp(k.ekraani_laius + 50, 180, cancel_pilt, True)
 upg_nupp = Nupp(k.ekraani_laius + 5, 180, upg_kahur_pilt, True)
 alga_nupp = Nupp(k.ekraani_laius + 60, 300, alga_level, True)
 resa_nupp = Nupp(310, 300, restart, True)
+kiirenda_nupp = Nupp(k.ekraani_laius + 50, 300, kiirenda, False)
 
 #funktsioonid
 def loo_relv(hiirepos):
@@ -127,7 +148,7 @@ while run:
             mäng_outcome = 1
             
         vaenlane_grupp.update(maailm)
-        kahuri_grupp.update(vaenlane_grupp)
+        kahuri_grupp.update(vaenlane_grupp, maailm)
         #
         if selected_kahur:
             selected_kahur.selected = True 
@@ -138,11 +159,10 @@ while run:
     maailm.draw(ekraan)
     
     #joonistab vaenlaste tee praegu näiteks
-    pygame.draw.lines(ekraan, "black", False, maailm.sihid)
+    #pygame.draw.lines(ekraan, "black", False, maailm.sihid)
     
-    tekst(str(maailm.elud), teksti_font, "black", 0, 0)
-    tekst(str(maailm.money), teksti_font, "black", 0, 30)
-    tekst(str(maailm.level), teksti_font, "black", 0, 60)
+    ekraan_data()
+    
     
     if mäng_läbi == False:           
         #ekraanile joonistamine
@@ -155,6 +175,10 @@ while run:
             if alga_nupp.draw(ekraan):
                 level_start = True
         else:
+            #ff
+            maailm.mängkiirus = 1
+            if kiirenda_nupp.draw(ekraan):
+                maailm.mängkiirus = 2
             if pygame.time.get_ticks() - viim_vaenlase_spawn > k.spawni_cd:
                 if maailm.spawned < len(maailm.vaenlaste_l):
                     vaenlase_tugevus = maailm.vaenlaste_l[maailm.spawned]
@@ -173,6 +197,8 @@ while run:
                     
         #ekraani kõrval paneel
         #nupu joonistamine
+        ekraan.blit(rahapilt, ( k.ekraani_laius + 260, 135))
+        tekst(str(k.kahuri_ost), teksti_font, "black", k.ekraani_laius + 215,  135)
         if kahuri_nupp.draw(ekraan):
             kahur_paigaldus = True 
         #kui kahurit pannakse alles ss näitab

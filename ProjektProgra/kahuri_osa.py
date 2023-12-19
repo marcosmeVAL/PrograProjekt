@@ -52,13 +52,13 @@ class Kahur(pygame.sprite.Sprite):
             anim_list.append(ajut_img)
         return anim_list
     
-    def update(self, vaenlane_grupp):
+    def update(self, vaenlane_grupp, maailm):
         #sihtm ss reageeri
         if self.sihtmärk:
             self.animatsioon()
         else:
             #otsi uus sihtmärk
-            if pygame.time.get_ticks() - self.last_shot > self.cd:
+            if pygame.time.get_ticks() - self.last_shot > (self.cd / maailm.mängkiirus):
                 self.sihtmärgid(vaenlane_grupp)
                 
     def upgrade(self):

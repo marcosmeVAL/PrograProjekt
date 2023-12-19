@@ -50,8 +50,8 @@ class Vaenlane(pygame.sprite.Sprite):
         #arvuta kaugus sihist
         dist = self.liikuma.length()
         #vaatab palju sihini on
-        if dist >= self.kiirus:
-            self.positsioon += self.liikuma.normalize() * self.kiirus
+        if dist >= (self.kiirus * maailm.mängkiirus):
+            self.positsioon += self.liikuma.normalize() * (self.kiirus * maailm.mängkiirus)
         else:
             if dist != 0:    
                 self.positsioon += self.liikuma.normalize() * dist

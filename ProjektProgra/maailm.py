@@ -6,6 +6,7 @@ import mängu_kindlad_seaded as k
 class Maailm():
     def __init__(self, info, kaart):
         self.level = 1
+        self.mängkiirus = 1
         self.elud = k.Elud
         self.money = k.Cash
         self.kaardi_ruut = []

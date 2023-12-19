@@ -2,18 +2,15 @@ rida = 15 #mitu rida
 veerg = 15 #mitu veergu
 ruut = 48 #mitu pixlit on ruut n.ö 1x1(ridaxveerg) ruut
 kõrval_paneel = 300
-
-
 ekraani_laius = veerg * ruut
 ekraani_pikkus = rida * ruut
 FPS = 60
 #mangu
-Elud = 1
-Cash = 5000
-totallevels = 1
+Elud = 100
+Cash = 650
+totallevels = 15
 #vaenlased
 spawni_cd = 400
-
 #kahur kindlad
 kahuri_ost = 200
 kahuri_upgrade = 100

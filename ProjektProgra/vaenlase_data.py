@@ -1,16 +1,16 @@
 Vspawn_data = [{
     #1
-    "lev1": 1,
-    "lev2": 0,
-    "lev3": 0,
-    "lev4": 0
+    "lev1": 10,
+    "lev2": 3,
+    "lev3": 2,
+    "lev4": 1
   },
   {
     #2
-    "lev1": 3,
-    "lev2": 0,
+    "lev1": 15,
+    "lev2": 10,
     "lev3": 0,
-    "lev4": 0
+    "lev4": 2
   },
   {
     #3
@@ -101,7 +101,7 @@ Vspawn_data = [{
     "lev1": 25,
     "lev2": 25,
     "lev3": 25,
-    "lev4": 25
+    "lev4": 100
   }
 ]
 VaenData = {"lev1":{
