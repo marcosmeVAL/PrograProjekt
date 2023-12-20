@@ -13,7 +13,7 @@ class Vaenlane(pygame.sprite.Sprite):
         #
         self.positsioon = Vector2(self.waypoints[0])
         #
-        self.siht_waypoint = 1
+        self.siht_waypoint = 0
         #
         self.elu = VaenData.get(vaenlase_tugevus)["elu"]
         #

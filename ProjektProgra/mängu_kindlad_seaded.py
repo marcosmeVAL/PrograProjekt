@@ -7,7 +7,7 @@ ekraani_pikkus = rida * ruut
 FPS = 60
 #mangu
 Elud = 100
-Cash = 650
+Cash = 650000
 totallevels = 15
 #vaenlased
 spawni_cd = 400

@@ -25,6 +25,7 @@ class Kahur(pygame.sprite.Sprite):
         #animatsioon
         self.sprite_sheets = sprite_sheets
         self.animatioon_list = self.lae_pildid(self.sprite_sheets[self.upg_level - 1])
+        self.animatioon_list1 = self.lae_pildid1(self.sprite_sheets[self.upg_level - 1])
         self.frame_indeks = 0
         self.update_time = pygame.time.get_ticks()
         #update pilt
@@ -51,6 +52,14 @@ class Kahur(pygame.sprite.Sprite):
             ajut_img = sprite_sheet.subsurface( i * suurus, 0, suurus, suurus)
             anim_list.append(ajut_img)
         return anim_list
+    def lae_pildid1(self, sprite_sheet):
+        ###võtab pildid sprite sheetist
+        suurus = sprite_sheet.get_height()
+        anim_list = []
+        for i in range(k.animatsioon_protsess):
+            ajut_img = sprite_sheet.subsurface( i * suurus, 0, suurus, suurus)
+            anim_list.append(ajut_img)
+        return anim_list
     
     def update(self, vaenlane_grupp, maailm):
         #sihtm ss reageeri
@@ -68,6 +77,23 @@ class Kahur(pygame.sprite.Sprite):
         #upgrade pildid
         self.animatioon_list = self.lae_pildid(self.sprite_sheets[self.upg_level - 1])
         self.image_og = self.animatioon_list[self.frame_indeks]
+        
+        #upg range ring
+        self.range_img = pygame.Surface((self.range * 2, self.range * 2))
+        self.range_img.fill(( 0, 0, 0))
+        self.range_img.set_colorkey(( 0, 0, 0))
+        pygame.draw.circle(self.range_img, "grey", (self.range, self.range), self.range)
+        self.range_img.set_alpha(100)
+        self.range_rect = self.range_img.get_rect()
+        self.range_rect.center = self.rect.center
+    
+    def upgrade1(self):
+        self.upg_level += 1
+        self.range = KDATA[self.upg_level - 1].get("range")
+        self.cd = KDATA[self.upg_level - 1].get("cd")
+        #upgrade pildid
+        self.animatioon_list1 = self.lae_pildid1(self.sprite_sheets[self.upg_level - 1])
+        self.image_og = self.animatioon_list1[self.frame_indeks]
         
         #upg range ring
         self.range_img = pygame.Surface((self.range * 2, self.range * 2))
