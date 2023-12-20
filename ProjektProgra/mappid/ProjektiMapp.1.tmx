@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="48" tileheight="48" infinite="0" nextlayerid="3" nextobjectid="10">
+ <tileset firstgid="1" source="6.tsx"/>
+ <tileset firstgid="2" source="1.tsx"/>
+ <tileset firstgid="3" source="5.tsx"/>
+ <tileset firstgid="4" source="9.tsx"/>
+ <tileset firstgid="5" source="0.tsx"/>
+ <tileset firstgid="6" source="11.tsx"/>
+ <tileset firstgid="7" source="8.tsx"/>
+ <tileset firstgid="8" source="7.tsx"/>
+ <tileset firstgid="9" source="4.tsx"/>
+ <tileset firstgid="10" source="2.tsx"/>
+ <tileset firstgid="11" source="3.tsx"/>
+ <tileset firstgid="12" source="12.tsx"/>
+ <tileset firstgid="13" source="10.tsx"/>
+ <objectgroup id="2" name="Waypoints1">
+  <object id="8" x="624" y="0">
+   <polyline points="0,0 0,625 -192,624 -192,384 -288,384 -288,672 -480,672 -480,192 -321.333,192.667 -240,240 -144,240 -144,48 -624,48"/>
+  </object>
+ </objectgroup>
+ <layer id="1" name="Tile Layer 1" width="15" height="15">
+  <data encoding="csv">
+6,6,6,6,6,6,6,6,6,6,9,1,2684354562,3,1,
+2,2,2,2,2,2,2,2,2,10,3,1,2684354562,3,1,
+1,1,1,1,1,1,1,1,1,8,3,1,2684354562,3,1,
+1,1,11,6,6,6,6,9,1,8,3,1,2684354562,3,1,
+1,1,8,5,2,2,10,13,6,12,3,1,2684354562,3,1,
+1,1,8,3,1,1,7,2,2,2,4,1,2684354562,3,1,
+1,1,8,3,1,1,1,1,1,1,1,1,2684354562,3,1,
+1,1,8,3,1,1,11,6,6,9,1,1,2684354562,3,1,
+1,1,8,3,1,1,8,5,10,3,1,1,2684354562,3,1,
+1,1,8,3,1,1,8,3,8,3,1,1,2684354562,3,1,
+1,1,8,3,1,1,8,3,8,3,1,1,2684354562,3,1,
+1,1,8,3,1,1,8,3,8,3,1,1,2684354562,3,1,
+1,1,8,3,1,1,8,3,8,1610612741,6,6,3221225477,3,1,
+1,1,8,13,6,6,12,3,7,2,2,2,2,4,1,
+1,1,7,2,2,2,2,4,1,1,1,1,1,1,1
+</data>
+ </layer>
+</map>
